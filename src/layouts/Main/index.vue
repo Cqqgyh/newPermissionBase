@@ -1,6 +1,6 @@
 <template>
   <section class="app-mian-height">
-    <router-view v-slot="{ Component, route }" v-if="isShow">
+    <router-view v-slot="{ Component, route }" v-if="isShow" :key="key">
       <transition appear name="fade-transform" mode="out-in">
         <component :is="Component" :key="route.path" />
       </transition>
@@ -9,13 +9,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref, watch } from 'vue'
+import { computed, defineComponent, nextTick, ref, watch } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   setup() {
     const settingsStore = useSettingsStore()
     const isShow = ref(true)
+    const route = useRoute()
+    const key = computed(() => {
+      return route.path + Math.random()
+    })
     watch(
       () => settingsStore.refresh,
       () => {
@@ -25,7 +30,7 @@ export default defineComponent({
         })
       },
     )
-    return { isShow }
+    return { isShow, key }
   },
 })
 </script>

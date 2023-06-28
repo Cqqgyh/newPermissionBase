@@ -1,6 +1,6 @@
 <template>
   <el-breadcrumb class="app-breadcrumb" separator-icon="ArrowRight">
-    <transition-group name="breadcrumb" mode="out-in">
+    <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item, index) in matched" :key="item.path">
         <el-icon size="14">
           <component :is="item.meta?.icon"></component>
