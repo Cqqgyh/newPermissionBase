@@ -36,7 +36,18 @@ function createUserList() {
       desc: '系统管理员',
       roles: ['系统管理员'],
       buttons: ['cuser.detail', 'cuser.user'],
-      routes: ['home'],
+      routers: [
+        {
+          path: '/system',
+          component: 'Layout',
+          meta: {
+            title: '系统管理',
+            icon: 'Lock',
+            isHide: true,
+          },
+          children: [],
+        },
+      ],
       token: 'System Token',
     },
   ]
@@ -66,7 +77,6 @@ const mockApiList = [
     url: '/admin/system/index/info',
     method: 'get',
     response: (request: any) => {
-      console.log('request', request)
       const token = getRequestToken(request)
       const checkUser = createUserList().find((item) => item.token === token)
       if (!checkUser) {

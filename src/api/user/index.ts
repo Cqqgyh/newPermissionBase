@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-03-10 14:16:24
  * @Description: 系统用户登陆信息接口
  */
-import http from '@/utils/http'
+import http from '@/utils/http/httpMock'
 import type { LoginData, UserRes } from './types'
 
 /**

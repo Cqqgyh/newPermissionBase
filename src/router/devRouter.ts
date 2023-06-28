@@ -26,6 +26,28 @@
 import { RouteRecordRaw } from 'vue-router'
 const LAYOUT = () => import('@/layouts/index.vue')
 export const devRoutes: RouteRecordRaw[] = [
+  {
+    name: 'luckyMoney',
+    path: '/luckyMoney',
+    component: LAYOUT,
+    redirect: '/luckyMoney/luckyMoneyList',
+    meta: {
+      title: '活动配置',
+      icon: 'UserFilled',
+    },
+    children: [
+      {
+        name: 'luckyMoney/luckyMoneyList',
+        path: '/luckyMoney/luckyMoneyList',
+        component: () => import('@/views/luckyMoney/luckyMoney.vue'),
+        meta: {
+          title: '活动列表',
+          icon: 'UserFilled',
+        },
+        children: [],
+      },
+    ],
+  },
   // // 网站概述
   // {
   //   name: 'websiteOverview',
