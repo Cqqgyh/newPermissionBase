@@ -19,7 +19,6 @@ import { ResultData } from './type'
 import { LOGIN_URL } from '@/config/config'
 import { RESEETSTORE } from '../reset'
 import router from '@/router'
-import { initMock } from '@/mock/mock'
 
 export const service: AxiosInstance = axios.create({
   // 判断环境设置不同的baseURL
