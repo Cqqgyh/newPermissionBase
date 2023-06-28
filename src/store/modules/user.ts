@@ -11,7 +11,6 @@ import type { UserState } from './model/userModel'
 import type { UserInfo, UserRes } from '@/api/user/types'
 import { useAuthStore } from './auth'
 import { RESEETSTORE } from '@/utils/reset'
-import { userInfoRes } from '@/mock/api/user/resInfo'
 export const useUserStore = defineStore({
   id: 'app-user',
   state: (): UserState => ({
@@ -29,13 +28,8 @@ export const useUserStore = defineStore({
     },
     async GetInfoAction() {
       let data: UserRes
-      // 判断是否开启mock 开启mock则使用mock数据 否则使用接口数据 为了兼容vite中没有require同步引入模式导致的在拦截器中，不能同步引入并执行而造成的错误
-      if (import.meta.env?.VITE_APP_OPEN_MOCK?.toString() === 'true') {
-        data = userInfoRes as unknown as UserRes
-      } else {
         const res = await getUserInfo()
         data = res.data
-      }
       const { avatar, buttons, name, roles, routers } = data
       const authStore = useAuthStore()
       // 存储用户信息
