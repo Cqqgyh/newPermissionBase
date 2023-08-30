@@ -20,8 +20,20 @@ export default defineConfig((config) => {
         localEnabled: command === 'serve',
       }),
       createSvgIconsPlugin({
+        // 指定图标文件夹
         iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+        // 指定 symbolId 格式
         symbolId: 'icon-[dir]-[name]',
+        //svg额外配置，具体配置参考https://github.com/svg/svgo
+        svgoOptions: {
+          plugins: [
+            // 去除所有svg的"class", "data-name", "fill", "stroke"属性
+            {
+              name: 'removeAttrs',
+              params: { attrs: ['class', 'data-name', 'fill', 'stroke'] },
+            },
+          ],
+        },
       }),
       // * vite 可以使用 jsx/tsx 语法
       vueJsx(),
