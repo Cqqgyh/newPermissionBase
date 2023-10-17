@@ -1,7 +1,7 @@
 /*
- * @Author: 朽木白
+ * @Author: 浅笑
  * @Date: 2023-02-06 11:02:58
- * @LastEditors: 1547702880@@qq.com
+ * @LastEditors: 945327638@qq.com
  * @LastEditTime: 2023-03-10 15:22:05
  * @Description: 用户store
  */
@@ -27,9 +27,8 @@ export const useUserStore = defineStore({
       this.userInfo = userInfo
     },
     async GetInfoAction() {
-      let data: UserRes
-        const res = await getUserInfo()
-        data = res.data
+      const res = await getUserInfo()
+      const data: UserRes = res.data
       const { avatar, buttons, name, roles, routers } = data
       const authStore = useAuthStore()
       // 存储用户信息
